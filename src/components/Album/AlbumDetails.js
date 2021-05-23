@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import config from '../../config.json';
 
 import Upload from '../Upload/Upload';
 
@@ -35,7 +36,8 @@ class AlbumDetails extends React.Component{
     }
 
     componentDidMount() {
-        let rurl = "http://localhost:9000/getalbums/" + this.props.location.state.albumid
+        //let rurl = "http://localhost:9000/getalbums/" + this.props.location.state.albumid
+        let rurl = `${config.API_Endpoint}/getalbums/` + this.props.location.state.albumid
 
         axios.get(rurl)
           .then(res => {

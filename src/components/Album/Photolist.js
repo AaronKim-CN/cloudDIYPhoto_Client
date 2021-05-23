@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import config from '../../config.json';
 
 import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
@@ -32,7 +33,7 @@ class PhotoList extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`http://localhost:9000/mys3/`)
+    axios.get(`${config.API_Endpoint}/mys3/`)
       .then(res => {
         let tmp = []
         for (let x in res.data){

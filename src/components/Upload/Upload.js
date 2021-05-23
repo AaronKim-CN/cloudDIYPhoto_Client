@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import config from '../../config.json';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
@@ -46,7 +47,7 @@ class MediaCapture extends Component {
         // for (var key of formData.entries()) {
         //   console.log(key[0] + ', ' + key[1]);
         // }
-        axios.post(`http://localhost:9000/upload/`,formData,{
+        axios.post(`${config.API_Endpoint}/upload/`,formData,{
           headers: {
             'Content-Type': 'multipart/form-data'
             //'enctype': 'multipart/form-data'

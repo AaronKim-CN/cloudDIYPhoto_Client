@@ -1,4 +1,6 @@
 import React,{ useState } from 'react';
+import config from '../../config.json';
+
 import PropTypes from 'prop-types';
 import './Login.css';
 import Avatar from '@material-ui/core/Avatar';
@@ -16,7 +18,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
 async function loginUser(credentials) {
-    return fetch('http://localhost:9000/login', {
+    return fetch(`${config.API_Endpoint}/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

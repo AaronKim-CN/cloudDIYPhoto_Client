@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import config from '../../config.json';
+
 import { withRouter } from 'react-router-dom';
 
 import { withStyles } from '@material-ui/core/styles'
@@ -55,7 +57,7 @@ class Albums extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:9000/getalbums/`)
+        axios.get(`${config.API_Endpoint}/getalbums/`)
           .then(res => {
             let tmp = []
             for (let x in res.data){
@@ -73,7 +75,7 @@ class Albums extends React.Component {
             <Grid container spacing={4}>
                 {this.state.albumnames.map((card) => {
                     console.log("sfsfdsf")
-                    let url = "http://localhost:9000/getRandomImage/" + card
+                    let url = `${config.API_Endpoint}/getRandomImage/` + card
                     
                     
                 return <Grid item key={card} xs={12} sm={6} md={4}>
