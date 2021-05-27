@@ -1,3 +1,3 @@
 #!/bin/bash
-cd /home/ec2-user/nodetest/api/
+cd /opt/front-end
 sudo npm run build
