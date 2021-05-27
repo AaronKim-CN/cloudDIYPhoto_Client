@@ -1,0 +1,26 @@
+version: 0.0
+os: linux
+
+files:
+  - source: /
+    destination: /opt/front-end
+
+permissions:
+  - object: /
+    pattern: "**"
+
+hooks:
+  # BeforeInstall:
+  #   - location: shScripts/before_install.sh
+  #     timeout: 1000
+  #     runas: root
+  # # During the AfterInstall deployment lifecycle event, run the commands
+  # #   in the script specified in "location".
+  AfterInstall:
+    - location: shScripts/after_install.sh
+      timeout: 1600
+
+  # ApplicationStart:
+  #   - location: shScripts/app_start.sh
+  #     timeout: 300
+  #     runas: root
