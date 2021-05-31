@@ -18,6 +18,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
 async function loginUser(credentials) {
+    console.log(credentials);
     return fetch(`${config.API_Endpoint}/login`, {
       method: 'POST',
       headers: {
@@ -75,22 +76,7 @@ export default function Login({ setToken }) {
   }
 
   return(
-    // <div className="login-wrapper">
-    // <h1>Please Log In</h1>
-    // <form onSubmit={handleSubmit}>
-    //   <label>
-    //     <p>Username</p>
-    //     <input type="text" onChange={e => setUserName(e.target.value)} />
-    //   </label>
-    //   <label>
-    //     <p>Password</p>
-    //     <input type="password" onChange={e => setPassword(e.target.value)} />
-    //   </label>
-    //   <div>
-    //     <button type="submit">Submit</button>
-    //   </div>
-    // </form>
-    // </div>
+    
     <Grid container component="main" className={classes.root}>
     <CssBaseline />
     <Grid item xs={false} sm={4} md={7} className={classes.image} />
@@ -113,6 +99,7 @@ export default function Login({ setToken }) {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={e => setUserName(e.target.value)}
           />
           <TextField
             variant="outlined"
@@ -124,6 +111,7 @@ export default function Login({ setToken }) {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={e => setPassword(e.target.value)}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
