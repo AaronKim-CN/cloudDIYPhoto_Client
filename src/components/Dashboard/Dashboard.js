@@ -8,7 +8,7 @@ export default function Dashboard() {
   return(
     <div>
       <Paper>
-        <PhotoList />
+        {/* <PhotoList /> */}
         <Albums />
       </Paper>
     </div>
