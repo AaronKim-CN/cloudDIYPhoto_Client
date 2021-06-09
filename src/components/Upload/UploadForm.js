@@ -58,7 +58,7 @@ class UploadForm extends Component {
         
         // Upload file to S3
         uploadtos3(this.state.imagePreviewUrl, this.state.loadfilename, this.props.albumid).then(result => {
-            if(result.status === "200") {
+            if(result.status == "200") {
                 console.log("Successed");
                 console.log(result);
                 inserttoMongoDB(

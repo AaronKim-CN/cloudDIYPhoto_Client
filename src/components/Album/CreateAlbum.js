@@ -52,7 +52,7 @@ class CreateAlbum extends React.Component{
         
         // Upload file to S3
         createDicrectory( this.state.albumid, this.state.displayname, this.state.discription).then(result => {
-            if(result.status === "200") {
+            if(result.status == "200") {
                 console.log("Successed");
                 console.log(result);
                 console.log("the albumid in client");
