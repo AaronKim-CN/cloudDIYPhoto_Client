@@ -5,20 +5,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 
 ReactDOM.render(
   <React.StrictMode>
     <CssBaseline />
-    <AppBar position="relative">
-      <Toolbar>
-        <Typography variant="h6" color="inherit" noWrap>
-          Dashboard
-        </Typography>
-      </Toolbar>
-    </AppBar>
     <App />
 
   </React.StrictMode>,

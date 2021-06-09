@@ -1,17 +1,15 @@
-import logo from './logo.svg';
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 
-import { Link } from 'react-router-dom';
-
 import Dashboard from './components/Dashboard/Dashboard';
+import Tommenu from './components/Dashboard/Topmenu';
 import Login from './components/Login/login';
 import CreateAlbum from './components/Album/CreateAlbum';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import useToken from './useToken';
 import AlbumDetails from './components/Album/AlbumDetails';
 
-import Button from '@material-ui/core/Button';
+import { Container } from '@material-ui/core';
 
 
 function App() {
@@ -23,14 +21,12 @@ function App() {
   }
 
   return (
-    <div className="wrapper">
+    <Container maxWidth="lg">
+
       <BrowserRouter>
+        <Tommenu />
         <Switch>
           <Route exact path="/">
-            {/* <Link to={`/createalbum`}>
-              <Button variant="contained" color="primary">Create Album</Button>
-            </Link> */}
-            <Button variant="contained" color="primary" component={Link} to="/createalbum">Create</Button>
             <Dashboard />
           </Route>
           <Route exact path="/createalbum">
@@ -41,7 +37,8 @@ function App() {
           </Route>
         </Switch>
       </BrowserRouter>
-    </div>
+
+    </Container>
   );
 }
 

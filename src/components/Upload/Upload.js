@@ -4,10 +4,9 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import { Button } from '@material-ui/core';
 //import Videocam from '@material-ui/icons/Videocam';
-import { Link } from 'react-router-dom';
+
 
 const styles = (theme) => ({
     input: {
@@ -33,9 +32,9 @@ class MediaCapture extends Component {
       fileReader.readAsDataURL(target.files[0]);
       fileReader.onloadend = (event) => {
 
-        this.setState({
-          imagePreviewUrl: fileReader.result
-        });
+      this.setState({
+        imagePreviewUrl: fileReader.result
+      });
 
       const fileReader2 = new FileReader();
       fileReader2.readAsDataURL(target.files[0]);
@@ -76,12 +75,9 @@ class MediaCapture extends Component {
                   type="file"
                   name="formtest"
               />
-              <label htmlFor="icon-button-photo">
-                  <IconButton color="primary" component="span">
-                    <PhotoCamera />
-                  </IconButton>
-              </label>
-              <Link to={`/`}>Go To Dashboard page</Link>
+
+              <Button variant="contained" component="label" htmlFor="icon-button-photo">Upload File</Button>
+
               <div>
                 <img src={this.state.imagePreviewUrl} />
               </div>
@@ -100,7 +96,7 @@ class MediaCapture extends Component {
                   </IconButton>
               </label> */}
 
-            </Fragment>
+          </Fragment>
         );
     }
 }

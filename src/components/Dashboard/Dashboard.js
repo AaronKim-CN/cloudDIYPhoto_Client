@@ -1,13 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import PhotoList from '../Album/Photolist';
 import Albums from '../Album/Albums';
+import { Paper } from '@material-ui/core';
 
 export default function Dashboard() {
   return(
     <div>
-      <PhotoList />
-      <Albums />
+      <Paper>
+        <PhotoList />
+        <Albums />
+      </Paper>
     </div>
   );
 }

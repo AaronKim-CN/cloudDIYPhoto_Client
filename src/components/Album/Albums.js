@@ -32,8 +32,6 @@ const Styles = theme => ({
     }
 });
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-// one of the imagelink, all albums name
 
 class Albums extends React.Component {
 
@@ -56,14 +54,12 @@ class Albums extends React.Component {
         })
     }
 
+    // Call to DB first
     componentDidMount() {
-        axios.get(`${config.API_Endpoint}/getalbums/`)
+        axios.get(`${config.API_Endpoint}/albums/`)
           .then(res => {
-            let tmp = []
-            for (let x in res.data){
-              tmp.push(res.data[x])
-            }
-            this.setState({ albumnames: tmp });
+            
+            this.setState({ albumnames: res.data });
             
         })
     }
@@ -73,34 +69,33 @@ class Albums extends React.Component {
             <Container className={this.props.classes.cardGrid} maxWidth="md">
             {/* End hero unit */}
             <Grid container spacing={4}>
-                {this.state.albumnames.map((card) => {
-                    console.log("sfsfdsf")
-                    let url = `${config.API_Endpoint}/getRandomImage/` + card
+                {this.state.albumnames.map((album) => {
+
+                    let url = `${config.API_Endpoint}/getRandomImage/` + album.albumid
                     
-                    
-                return <Grid item key={card} xs={12} sm={6} md={4}>
-                        <Card className={this.props.classes.card}>
-                        <CardMedia
-                            className={this.props.classes.cardMedia}
-                            image={url}
-                            title="Image title"
-                        />
-                        <CardContent className={this.props.classes.cardContent}>
-                            <Typography gutterBottom variant="h5" component="h2">
-                            {card}
-                            </Typography>
-                            <Typography>
-                            This is a media card. You can use this section to describe the content.
-                            </Typography>
-                        </CardContent>
-                        <CardActions>
-                            <Button size="small" color="primary" onClick={(e) => this.handleClick(card, e)}>
-                            View
-                            </Button>
-                        </CardActions>
-                        </Card>
-                    </Grid>
-                }
+                    return <Grid item key={album.albumid} xs={12} sm={6} md={4}>
+                            <Card className={this.props.classes.card}>
+                            <CardMedia
+                                className={this.props.classes.cardMedia}
+                                image={url}
+                                title="Image title"
+                            />
+                            <CardContent className={this.props.classes.cardContent}>
+                                <Typography gutterBottom variant="h5" component="h2">
+                                {album.displayname}
+                                </Typography>
+                                <Typography>
+                                This is a media card. You can use this section to describe the content.
+                                </Typography>
+                            </CardContent>
+                            <CardActions>
+                                <Button size="small" color="primary" onClick={(e) => this.handleClick(album.albumid, e)}>
+                                View
+                                </Button>
+                            </CardActions>
+                            </Card>
+                        </Grid>
+                    }
             )}
           </Grid>
         </Container>
