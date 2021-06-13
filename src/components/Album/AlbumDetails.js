@@ -56,7 +56,9 @@ class AlbumDetails extends React.Component{
             <div> 
                 <Paper>
                     <Grid container justify="center" alignItems="stretch" spacing={3}>
-                    
+                        <Grid item xs={12} sm={4}>
+                            <UploadForm albumid={this.props.location.state.albumid} />
+                        </Grid>
                         <Grid item xs={12} sm={7}>
                             <GridList className={this.props.classes.gridList} cols={4} spacing={5}>
                                 {this.state.imageData.map((tile) => (
@@ -66,9 +68,7 @@ class AlbumDetails extends React.Component{
                                 ))}
                             </GridList>
                         </Grid>
-                        <Grid item xs={12} sm={4}>
-                            <UploadForm albumid={this.props.location.state.albumid} />
-                        </Grid>
+                        
                     </Grid>
                 </Paper>
                 
