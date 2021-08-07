@@ -38,8 +38,9 @@ class AlbumDetails extends React.Component{
     }
 
     componentDidMount() {
-        let rurl = `${config.API_Endpoint}/getalbums/` + this.props.location.state.albumid
-       
+        //let rurl = `${config.API_Endpoint}/getalbums/` + this.props.location.state.albumid
+        let rurl = `${config.API_Endpoint}/pictures/` + this.props.location.state.albumid
+        
         axios.get(rurl)
           .then(res => {
 

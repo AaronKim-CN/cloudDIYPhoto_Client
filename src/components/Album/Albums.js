@@ -71,7 +71,8 @@ class Albums extends React.Component {
             <Grid container spacing={4}>
                 {this.state.albumnames.map((album) => {
 
-                    let url = `${config.API_Endpoint}/getRandomImage/` + album.albumid
+                    //let url = `${config.API_Endpoint}/getRandomImage/` + album.albumid
+                    let url = `${config.API_Endpoint}/pictures/` + album.albumid + '/random'
                     
                     return <Grid item key={album.albumid} xs={12} sm={6} md={4}>
                             <Card className={this.props.classes.card}>
