@@ -41,11 +41,12 @@ class AlbumDetails extends React.Component{
         //let rurl = `${config.API_Endpoint}/getalbums/` + this.props.location.state.albumid
         let rurl = `${config.API_Endpoint}/pictures/` + this.props.location.state.albumid
         
-        axios.get(rurl)
-          .then(res => {
-
+        axios.get(rurl,{
+            headers: {
+                'Authorization': `token ${this.props.token}`
+            } 
+        }).then(res => {
             this.setState({ imageData: res.data });
-            
         })
     }
     
@@ -58,7 +59,7 @@ class AlbumDetails extends React.Component{
                 <Paper>
                     <Grid container justify="center" alignItems="stretch" spacing={3}>
                         <Grid item xs={12} sm={4}>
-                            <UploadForm albumid={this.props.location.state.albumid} />
+                            <UploadForm albumid={this.props.location.state.albumid} token={this.props.token} />
                         </Grid>
                         <Grid item xs={12} sm={7}>
                             <GridList className={this.props.classes.gridList} cols={4} spacing={5}>

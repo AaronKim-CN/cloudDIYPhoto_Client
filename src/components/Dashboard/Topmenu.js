@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -10,6 +10,7 @@ import Menu from '@material-ui/core/Menu';
 import AddIcon from '@material-ui/icons/Add';
 import HomeIcon from '@material-ui/icons/Home';
 import { Link } from 'react-router-dom';
+import useToken from '../../useToken';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,10 +25,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Topmenu() {
+  
   const classes = useStyles();
-  const [auth, setAuth] = React.useState(true);
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [auth, setAuth] = useState(true);
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  const { removeToken } = useToken();
 
   const handleChange = (event) => {
     setAuth(event.target.checked);
@@ -40,6 +43,12 @@ export default function Topmenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleLogout = () => {
+    removeToken();
+    // Refresh the page
+    window.location.reload();
+  }
 
   return (
     <div className={classes.root}>
@@ -84,7 +93,8 @@ export default function Topmenu() {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
+
               </Menu>
             </div>
           )}

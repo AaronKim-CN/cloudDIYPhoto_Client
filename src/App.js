@@ -27,13 +27,13 @@ function App() {
         <Tommenu />
         <Switch>
           <Route exact path="/">
-            <Dashboard />
+            <Dashboard token={token} />
           </Route>
           <Route exact path="/createalbum">
-            <CreateAlbum />
+            <CreateAlbum token={token} />
           </Route>
           <Route exact path="/albumdetails">
-            <AlbumDetails />
+            <AlbumDetails token={token} />
           </Route>
         </Switch>
       </BrowserRouter>

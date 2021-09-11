@@ -1,17 +1,24 @@
 import axios from 'axios';
 import config from '../../config.json';
 
-export async function uploadtos3(file, filename, albumid) {
+export async function addNewPicture(file, loadfilename, filename, place, tags, albumid, accessToken) {
     var formData = new FormData();
     formData.append("file", file);
+    formData.append("loadfilename", loadfilename);
     formData.append("filename", filename);
+    formData.append("place", place);
+    formData.append("tags",tags);
 
     var result = ''
-    
-    await axios.post(`${config.API_Endpoint}/upload/${albumid}`,formData, {
+    console.log("front data");
+    console.log(loadfilename);
+    console.log(file);
+    console.log(filename);
+    console.log(place);
+    await axios.post(`${config.API_Endpoint}/pictures/${albumid}/upload`,formData, {
       headers: {
-        'Content-Type': 'multipart/form-data'
-        //'enctype': 'multipart/form-data'
+        'Content-Type': 'multipart/form-data',
+        'Authorization': `token ${accessToken}`
       }
     }).then(res => {
         result = res;
@@ -22,23 +29,4 @@ export async function uploadtos3(file, filename, albumid) {
 
     return result
     
-}
-
-export async function inserttoMongoDB(albumname, filename, place, s3key, tags) {
-    // Call db insert API
-
-    const data = {
-        album: albumname,
-        filename: filename,
-        place: place,
-        s3key: s3key,
-        tags: tags
-    }
-
-    await axios.post(`${config.API_Endpoint}/pictures/`, data).then(function (response) {
-        console.log("Post request");
-        console.log(response);
-    })
-    console.log("Insert images to Mongo DB");
-    return "ok"
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { TextField, Button, Typography, Paper } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import { uploadtos3, inserttoMongoDB } from './methods';
+import { addNewPicture } from './methods';
 
 const styles = (theme) => ({
     root: {
@@ -55,25 +55,18 @@ class UploadForm extends Component {
 
     handleSubmit = async e => {
         e.preventDefault()
-        
-        // Upload file to S3
-        uploadtos3(this.state.imagePreviewUrl, this.state.loadfilename, this.props.albumid).then(result => {
-            if(result.status == "200") {
-                console.log("Successed");
-                console.log(result);
-                inserttoMongoDB(
-                    this.props.albumid,
-                    this.state.filename,
-                    this.state.place,
-                    this.state.loadfilename,
-                    this.state.tags
-                ).then( dbresult => {
-                    console.log(dbresult);
-                })
-
-            }
-
-        });
+        // Upload new picture to S3 and add the metadata to the DB. 
+        addNewPicture(
+            this.state.imagePreviewUrl,
+            this.state.loadfilename,
+            this.state.filename,
+            this.state.place,
+            this.state.tags,
+            this.props.albumid,
+            this.props.token
+        ).then(result => {
+            console.log(result)
+        })
 
     }
 

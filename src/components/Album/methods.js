@@ -1,7 +1,7 @@
 import axios from 'axios';
 import config from '../../config.json';
 
-export async function createDicrectory(albumid, displayname, discription) {
+export async function createDicrectory(albumid, displayname, discription, accessToken) {
     
     var data = {};
     data['albumid'] = albumid;
@@ -12,7 +12,8 @@ export async function createDicrectory(albumid, displayname, discription) {
     
     await axios.post(`${config.API_Endpoint}/albums/`,data, {
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `token ${accessToken}`
       }
     }).then(res => {
         result = res;

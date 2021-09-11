@@ -48,10 +48,9 @@ class CreateAlbum extends React.Component{
     }
 
     handleSubmit = async e => {
-        e.preventDefault()
-        
+        e.preventDefault()        
         // Upload file to S3
-        createDicrectory( this.state.albumid, this.state.displayname, this.state.discription).then(result => {
+        createDicrectory( this.state.albumid, this.state.displayname, this.state.discription, this.props.token).then(result => {
             if(result.status == "200") {
                 console.log("Successed");
                 console.log(result);
