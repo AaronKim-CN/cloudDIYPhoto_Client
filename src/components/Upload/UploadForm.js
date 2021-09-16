@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { TextField, Button, Typography, Paper } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
-import { addNewPicture } from './methods';
+import { addNewPicture } from '../Lib/methods';
 
 const styles = (theme) => ({
     root: {

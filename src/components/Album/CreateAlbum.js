@@ -5,8 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
 // WithRouter to us Redicrect. 
 
-import { createDicrectory } from './methods';
-
+import { createDicrectory } from '../Lib/methods';
 
 const Styles = theme => ({
     root: {
