@@ -12,7 +12,7 @@ Open the config.json file in the src folder. And, specify the API endpoint.
 ```
 
 ### Deploy the Client and API to the same place.
-Using the gulp.
+If you use the gulp, we channge the API End point first.
 ```
 "API_Endpoint": "."
 ```
