@@ -28,7 +28,8 @@ export async function createDicrectory(albumid, displayname, discription, access
   
 }
 
-export async function addNewPicture(file, loadfilename, filename, place, tags, albumid, accessToken) {
+export async function addNewPicture(file, loadfilename, filename, place, tags, albumid, accessToken, onUploadProgress) {
+
     var formData = new FormData();
     formData.append("file", file);
     formData.append("loadfilename", loadfilename);
@@ -38,11 +39,18 @@ export async function addNewPicture(file, loadfilename, filename, place, tags, a
 
     var result = ''
 
+    // let axios_config = {
+    //   onUploadProgress: function(progressEvent) {
+    //     percentCompleted = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
+    //   }
+    // }
+
     await axios.post(`${config.API_Endpoint}/pictures/${albumid}/upload`,formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
         'Authorization': `token ${accessToken}`
-      }
+      },
+      onUploadProgress
     }).then(res => {
         result = res;
     }).catch((error) => {
