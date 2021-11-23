@@ -39,7 +39,7 @@ class AlbumDetails extends React.Component{
 
     componentDidMount() {
         //let rurl = `${config.API_Endpoint}/getalbums/` + this.props.location.state.albumid
-        let rurl = `${config.API_Endpoint}/pictures/` + this.props.location.state.albumid
+        let rurl = `${config.API_Endpoint}/pictures/` + this.props.location.state.albumid + "/thumnail"
         
         axios.get(rurl,{
             headers: {
@@ -52,8 +52,6 @@ class AlbumDetails extends React.Component{
     
     render() {
         
-        console.log(this.props.location.state.albumid)
-
         return (
             <div> 
                 <Paper>
