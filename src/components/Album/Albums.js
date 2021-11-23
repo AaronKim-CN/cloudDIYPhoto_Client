@@ -45,7 +45,7 @@ class Albums extends React.Component {
     }
 
     handleClick = (parameter, event) => {
-        console.log('this is:', this);
+        
         //this.props.history.push('/albumdetails')
         this.props.history.push({
             pathname: '/albumdetails',
@@ -74,7 +74,7 @@ class Albums extends React.Component {
             {/* End hero unit */}
             <Grid container spacing={4}>
                 {this.state.albumnames.map((album) => {
-                    console.log(album)
+                    
                     //let url = `${config.API_Endpoint}/getRandomImage/` + album.albumid
                     // Get signed URL
                     let url = `${config.API_Endpoint}/pictures/` + album.albumid + '/random'
