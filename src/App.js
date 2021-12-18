@@ -9,8 +9,13 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import useToken from './useToken';
 import AlbumDetails from './components/Album/AlbumDetails';
 
-import { Container } from '@material-ui/core';
+//MUI5.0
+import Container from '@mui/material/Container';
+import { ThemeProvider, createTheme } from '@mui/material/styles';;
 
+const theme = createTheme({
+
+})
 
 function App() {
 
@@ -21,24 +26,28 @@ function App() {
   }
 
   return (
-    <Container maxWidth="lg">
+    
+    <ThemeProvider theme={theme}>
 
-      <BrowserRouter>
-        <Tommenu />
-        <Switch>
-          <Route exact path="/">
-            <Dashboard token={token} />
-          </Route>
-          <Route exact path="/createalbum">
-            <CreateAlbum token={token} />
-          </Route>
-          <Route exact path="/albumdetails">
-            <AlbumDetails token={token} />
-          </Route>
-        </Switch>
-      </BrowserRouter>
+      <Container maxWidth="lg">
+        <BrowserRouter>
+          <Tommenu />
+          <Switch>
+            <Route exact path="/">
+              <Dashboard token={token} />
+            </Route>
+            <Route exact path="/createalbum">
+              <CreateAlbum token={token} />
+            </Route>
+            <Route exact path="/albumdetails">
+              <AlbumDetails token={token} />
+            </Route>
+          </Switch>
+        </BrowserRouter>
+      </Container>
 
-    </Container>
+    </ThemeProvider>
+    
   );
 }
 

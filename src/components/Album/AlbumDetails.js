@@ -1,31 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 import config from '../../config.json';
-
 import UploadForm from '../Upload/UploadForm';
-
 import { withRouter } from 'react-router-dom';
 
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-
-import { withStyles } from '@material-ui/core/styles';
-import { Grid, Paper } from '@material-ui/core';
-
-
-const Styles = theme => ({
-    root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-        overflow: 'hidden',
-        backgroundColor: theme.palette.background.paper,
-    },
-    gridList: {
-        width: "100%",
-        height: 600,
-    },
-});
+//MUI5.0
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+import { Grid, Paper } from '@mui/material';
 
 class AlbumDetails extends React.Component{
 
@@ -54,22 +36,22 @@ class AlbumDetails extends React.Component{
         
         return (
             <div> 
-                <Paper>
-                    <Grid container justify="center" alignItems="stretch" spacing={3}>
+                <Paper sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around', overflow: 'hidden'}}>
+                    {/* <Grid container justify="center" alignItems="stretch" spacing={3}> */}
                         <Grid item xs={12} sm={4}>
                             <UploadForm albumid={this.props.location.state.albumid} token={this.props.token} />
                         </Grid>
                         <Grid item xs={12} sm={7}>
-                            <GridList className={this.props.classes.gridList} cols={4} spacing={5}>
+                            <ImageList sx={{ width: "100%", height: 600 }} cols={5} spacing={5}>
                                 {this.state.imageData.map((tile) => (
-                                    <GridListTile key={tile.img} cols={tile.cols || 1}>
+                                    <ImageListItem key={tile.img} cols={tile.cols || 1}>
                                         <img src={tile.img} alt={tile.title} />
-                                    </GridListTile>
+                                    </ImageListItem>
                                 ))}
-                            </GridList>
+                            </ImageList>
                         </Grid>
                         
-                    </Grid>
+                    {/* </Grid> */}
                 </Paper>
                 
             </div>
@@ -78,4 +60,4 @@ class AlbumDetails extends React.Component{
 
 }
 
-export default withRouter(withStyles(Styles, { withTheme: true })(AlbumDetails));
+export default withRouter(AlbumDetails);

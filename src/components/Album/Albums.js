@@ -4,34 +4,15 @@ import config from '../../config.json';
 
 import { withRouter } from 'react-router-dom';
 
-import { withStyles } from '@material-ui/core/styles'
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import CardActions from '@material-ui/core/CardActions';
-import Button from '@material-ui/core/Button';
-
-const Styles = theme => ({
-    cardGrid: {
-        paddingTop: theme.spacing(8),
-        paddingBottom: theme.spacing(8),
-    },
-    card: {
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-    },
-    cardMedia: {
-        paddingTop: '56.25%', // 16:9
-    },
-    cardContent: {
-        flexGrow: 1,
-    }
-});
-
+//MUI5.0
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import CardActions from '@mui/material/CardActions';
+import Button from '@mui/material/Button';
 
 class Albums extends React.Component {
 
@@ -70,7 +51,8 @@ class Albums extends React.Component {
 
     render() {
         return (
-            <Container className={this.props.classes.cardGrid} maxWidth="md">
+           // <Container className={this.props.classes.cardGrid} maxWidth="md">
+           <Container sx={{ paddingTop: 8, paddingBottom: 8}} maxWidth="md">
             {/* End hero unit */}
             <Grid container spacing={4}>
                 {this.state.albumnames.map((album) => {
@@ -80,13 +62,14 @@ class Albums extends React.Component {
                     let url = `${config.API_Endpoint}/pictures/` + album.albumid + '/random'
 
                     return <Grid item key={album.albumid} xs={12} sm={6} md={4}>
-                            <Card className={this.props.classes.card}>
+                            
+                            <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
                             <CardMedia
-                                className={this.props.classes.cardMedia}
+                                sx={{paddingTop: '56.25%'}}
                                 image={url}
                                 title="Image title"
                             />
-                            <CardContent className={this.props.classes.cardContent}>
+                            <CardContent sx={{flexGrow: 1}}>
                                 <Typography gutterBottom variant="h5" component="h2">
                                     {album.displayname}
                                 </Typography>
@@ -109,5 +92,4 @@ class Albums extends React.Component {
     }
 }
 
-//export default withStyles(Styles, { withTheme: true })(Albums);
-export default withRouter(withStyles(Styles, { withTheme: true })(Albums));
+export default withRouter(Albums);
