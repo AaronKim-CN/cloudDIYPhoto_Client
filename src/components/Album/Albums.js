@@ -52,7 +52,7 @@ class Albums extends React.Component {
     render() {
         return (
            // <Container className={this.props.classes.cardGrid} maxWidth="md">
-           <Container sx={{ paddingTop: 8, paddingBottom: 8}} maxWidth="md">
+           <Container sx={{ paddingTop: 4, paddingBottom: 4}} maxWidth="md">
             {/* End hero unit */}
             <Grid container spacing={4}>
                 {this.state.albumnames.map((album) => {

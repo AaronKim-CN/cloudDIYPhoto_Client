@@ -11,10 +11,18 @@ import AlbumDetails from './components/Album/AlbumDetails';
 
 //MUI5.0
 import Container from '@mui/material/Container';
-import { ThemeProvider, createTheme } from '@mui/material/styles';;
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { brown } from '@mui/material/colors';
 
 const theme = createTheme({
-
+  palette: {
+    secondary: {
+      main: brown[500],
+    },
+  },
+  typography: {
+    fontFamily: '-apple-system',
+  }
 })
 
 function App() {
