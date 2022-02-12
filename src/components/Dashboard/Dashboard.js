@@ -1,18 +1,9 @@
 import React from 'react';
-
-import PhotoList from '../Album/Photolist';
 import Albums from '../Album/Albums';
-import { Paper } from '@material-ui/core';
-
 import { withRouter } from 'react-router-dom';
-import { withStyles } from '@material-ui/core/styles';
 
-const Styles = theme => ({
-  cardGrid: {
-      paddingTop: theme.spacing(8),
-      paddingBottom: theme.spacing(8),
-  }
-});
+//MUI5.0
+import { Paper } from '@mui/material';
 
 class Dashboard extends React.Component {
 
@@ -25,7 +16,6 @@ class Dashboard extends React.Component {
     return (
       <div>
         <Paper>
-          {/* <PhotoList /> */}
           <Albums token={this.props.token} />
         </Paper>
       </div>
@@ -34,4 +24,4 @@ class Dashboard extends React.Component {
 
 }
 
-export default withRouter(withStyles(Styles, { withTheme: true })(Dashboard));
+export default withRouter(Dashboard);

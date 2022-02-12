@@ -1,47 +1,8 @@
 import React, { Component } from 'react';
-
-import { TextField, Button, Typography, Paper } from '@material-ui/core';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import { withStyles } from '@material-ui/core/styles';
 import { addNewPicture } from '../Lib/methods';
 
-const styles = (theme) => ({
-    root: {
-        '& .MuiTextField-root': {
-            margin: theme.spacing(1),
-        },
-    },
-    paper: {
-        padding: theme.spacing(2),
-    },
-    form: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-    },
-    fileInput: {
-        width: '97%',
-        margin: '10px 0',
-    },
-    buttonSubmit: {
-        marginBottom: 10,
-    },
-    input: {
-        display: 'none'
-    },
-    imagecanvas: {
-        width:'auto',
-        height: 'auto',
-        maxWidth: '100%',
-        maxHeight: '100%'
-    },
-    progressbar: {
-        width: '100%',
-        height: 20,
-        borderRadius: 5,
-        display: 'none'
-    }
-});
+//MUI5.0
+import { TextField, Button, Typography, Paper, LinearProgress, Box } from '@mui/material';
 
 function refreshPage() {
     window.location.reload(false);
@@ -114,40 +75,49 @@ class UploadForm extends Component {
     };    
 
     render() {
-        const { classes } = this.props;
 
         return (
 
-            <Paper className={classes.paper}>
-                <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={this.handleSubmit}>
-                    <Typography variant="h6">{ 'Add Photo to ' + this.props.albumid }</Typography>
-                    <Button variant="contained" component="label" htmlFor="icon-button-photo">Upload File</Button>
-                    <div>
-                        <img className={classes.imagecanvas} src={this.state.imagePreviewUrl} />
-                    </div>
-                    <input
+            <Paper sx={{padding:2}}>
+                <Box component='form' 
+                    autoComplete="off" 
+                    noValidate 
+                    sx={{
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        justifyContent: 'center',
+                        '& .MuiTextField-root': { m: 1 }
+                    }} 
+                    onSubmit={this.handleSubmit}>
+
+                    <Typography sx={{ padding:1 }} variant="h6">{ 'Add Photo to ' + this.props.albumid }</Typography>
+                    <Button sx={{ padding:1 }} variant="contained" component="label" htmlFor="icon-button-photo">Upload File</Button>
+                    <Box>
+                        <img src={this.state.imagePreviewUrl} style={{ maxWidth: '100%',maxHeight: '100%',width:'auto',height: 'auto' }} />
+                    </Box>
+                    <TextField
                         accept="image/*"
-                        className={classes.input}
+                        sx={{display: 'none'}}
                         id="icon-button-photo"
                         onChange={this.handleCapture}
                         type="file"
                         name="formtest"
                     />
-
                     <TextField name="place" variant="outlined" label="place" fullWidth value={this.state.place} onChange={(e) => this.setState({ place: e.target.value})} />
                     <TextField name="tags" variant="outlined" label="tags" fullWidth value={this.state.tags} onChange={(e) => this.setState({ tags: e.target.value})} />
                     <TextField name="filename" variant="outlined" label="filename" fullWidth value={this.state.filename} onChange={(e) => this.setState({ filename: e.target.value})} />
-
-                    {/* <div className={classes.fileInput}><FileBase type="file" multiple={false} onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })} /></div> */}
-                    <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
-                    <div id="progressbar" className={classes.progressbar}>
+                    <Button variant="contained" sx={{ borderBottom:5 }} color="primary" size="large" type="submit" fullWidth>Submit</Button>
+                    <Box id="progressbar" sx={{ width: '100%',
+                                                height: 30,
+                                                borderRadius: 5,
+                                                display: 'none'}}>
                         <LinearProgress variant="determinate" value={this.state.progress} />
-                    </div>
+                    </Box>
                     <Button variant="contained" color="secondary" size="small" onClick={this.clear} fullWidth>Clear</Button>
-                </form>
+                </Box>
             </Paper>
         )
     }
 }
 
-export default withStyles(styles, { withTheme: true })(UploadForm);
+export default UploadForm;

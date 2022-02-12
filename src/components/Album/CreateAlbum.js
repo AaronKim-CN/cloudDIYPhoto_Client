@@ -1,34 +1,9 @@
 import React from 'react';
-
-import { TextField, Button, Typography, Paper } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
-// WithRouter to us Redicrect. 
-
 import { createDicrectory } from '../Lib/methods';
 
-const Styles = theme => ({
-    root: {
-        '& .MuiTextField-root': {
-            margin: theme.spacing(1),
-        },
-    },
-    paper: {
-        padding: theme.spacing(2),
-    },
-    form: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-    },
-    fileInput: {
-        width: '97%',
-        margin: '10px 0',
-    },
-    buttonSubmit: {
-        marginBottom: 10,
-    }
-});
+//MUI5.0
+import { TextField, Button, Typography, Paper } from '@mui/material';
 
 const clear = () => {
     console.log("sss")
@@ -86,18 +61,20 @@ class CreateAlbum extends React.Component{
 
     render() {
 
-        const { classes } = this.props;
-
         return (
 
             <Paper>
-                <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={this.handleSubmit}>
-                    <Typography variant="h6">{ 'Create a new Album' }</Typography>
-                    <TextField name="albumid" variant="outlined" label="albumid" fullWidth value={this.state.albumid} onChange={(e) => this.setState({ albumid: e.target.value})} />
-                    <TextField name="displayname" variant="outlined" label="displayname" fullWidth value={this.state.displayname} onChange={(e) => this.setState({ displayname: e.target.value})} />
-                    <TextField name="discription" variant="outlined" label="discription" fullWidth value={this.state.discription} onChange={(e) => this.setState({ discription: e.target.value})} />
-                    <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
-                    <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
+                <form autoComplete="off" noValidate sx={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    justifyContent: 'center',
+                }} onSubmit={this.handleSubmit}>
+                    <Typography sx={{ padding:1 }} variant="h6">{ 'Create a new Album' }</Typography>
+                    <TextField sx={{ padding:1 }} name="albumid" variant="outlined" label="albumid" fullWidth value={this.state.albumid} onChange={(e) => this.setState({ albumid: e.target.value})} />
+                    <TextField sx={{ padding:1 }} name="displayname" variant="outlined" label="displayname" fullWidth value={this.state.displayname} onChange={(e) => this.setState({ displayname: e.target.value})} />
+                    <TextField sx={{ padding:1 }} name="discription" variant="outlined" label="discription" fullWidth value={this.state.discription} onChange={(e) => this.setState({ discription: e.target.value})} />
+                    <Button sx={{ border:10 }} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
+                    <Button sx={{ border:10 }} variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
                 </form>
             </Paper>
         )
@@ -105,4 +82,4 @@ class CreateAlbum extends React.Component{
 
 }
 
-export default withRouter(withStyles(Styles, { withTheme: true })(CreateAlbum));
+export default withRouter(CreateAlbum);
