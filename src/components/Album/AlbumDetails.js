@@ -43,9 +43,11 @@ class AlbumDetails extends React.Component{
         }).then(res => {
             console.log("ssssss");
             console.log(res.data);
-            this.setState({ imageData: res.data.imageData });
-            this.setState({ lastKey: res.data.lastKey });
-            this.setState({ count: res.data.count });
+            if(res.data.imageData){
+                this.setState({ imageData: res.data.imageData });
+                this.setState({ lastKey: res.data.lastKey });
+                this.setState({ count: res.data.count });
+            }
         })
     }
 
